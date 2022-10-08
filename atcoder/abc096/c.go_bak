@@ -1,0 +1,84 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func isNeighborHash(s [][]string, i int, j int, h int, w int) bool {
+	//	fmt.Println(s, i, j, h, w)
+	//	count := 0
+	//	for k := i-1; k <= i+1; k++ {
+	//		for l := j-1; l <= j+1; l++ {
+	//			if k < 0 || k >= h || l < 0 || l >= w || (k == i && l == j) {
+	//				continue
+	//			}
+	//			fmt.Printf("i:%d j:%d k:%d l:%d\n", i, j, k, l)
+	//			if s[k][l] == "#" {
+	//				count++
+	//			}
+	//		}
+	//	}
+	//
+	//	if count >= 1 {
+	//		return true
+	//	}
+	//	return false
+
+	//	if i-1 > 0 && j-1 > 0 && i+1 <= h && j+1 <= w {
+	//		if s[i-1][j] == "#" || s[i+1][j] == "#" || s[i][j-1] == "#" || s[i][j+1] == "#" {
+	//			return true
+	//		}
+	//	}
+	//	return false
+	if i-1 > 0 && s[i-1][j] == "#" {
+		return true
+	}
+	if i+1 < h && s[i+1][j] == "#" {
+		return true
+	}
+	if j-1 > 0 && s[i][j-1] == "#" {
+		return true
+	}
+	if j+1 < w && s[i][j+1] == "#" {
+		return true
+	}
+	return false
+}
+
+func main() {
+	// この問題は、全ての＃は互いに隣接しているか？という問題に置き換えられる
+	// グリッド上のそれぞれの点で、自分が＃かどうか？＃であれば隣に＃があるか？
+	// を見ていけばいいはず
+	var h, w int
+	fmt.Scan(&h, &w)
+
+	var s [][]string
+	for i := 0; i < h; i++ {
+		var l string
+		fmt.Scan(&l)
+		s = append(s, strings.Split(l, ""))
+	}
+	//	for i := 0; i < h; i++ {
+	//		for j := 0; j < w; j++ {
+	//			fmt.Print(s[i][j])
+	//		}
+	//		fmt.Println()
+	//	}
+
+	check := func() string {
+		for i := 0; i < h; i++ {
+			for j := 0; j < w; j++ {
+				if s[i][j] == "#" {
+					//fmt.Println(i, j, s[i][j], isNeighborHash(s, i, j, h, w))
+					//fmt.Println(i, j, s[i][j])
+					if !isNeighborHash(s, i, j, h, w) {
+						return "No"
+					}
+				}
+			}
+		}
+		return "Yes"
+	}
+	fmt.Println(check())
+}

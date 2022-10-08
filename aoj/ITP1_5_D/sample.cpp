@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+
+void call(int n){
+  int i = 1;
+ CHECK_NUM:
+  cout << "this3" << endl;
+  int x = i;
+  if ( x % 3 == 0 ){
+    cout << " " << i;
+    goto END_CHECK_NUM;
+  }
+ INCLUDE3:
+  cout << "this2" << endl;
+  if ( x % 10 == 3 ){
+    cout << " " << i;
+    goto END_CHECK_NUM;
+  }
+  x /= 10;
+  if ( x ) goto INCLUDE3;
+ END_CHECK_NUM:
+  cout << "this1" << endl;
+  if ( ++i <= n ) goto CHECK_NUM;
+
+  cout << endl;
+}
+
+int main(){
+
+  call(30);
+  return(0);
+}

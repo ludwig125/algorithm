@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func main() {
+	var a, b, x int
+	fmt.Scan(&a, &b, &x)
+	fmt.Println(a, b, x)
+
+	count := 0
+	for i := a; i <= b; i++ {
+		if i%x == 0 {
+			count++
+
+		}
+	}
+	fmt.Println(count)
+}

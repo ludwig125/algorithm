@@ -1,0 +1,26 @@
+package main
+
+import "fmt"
+
+func main() {
+	var N int
+	fmt.Scan(&N)
+
+	getCount := func() int {
+		for n := N; n > 0; n-- {
+			count := 0
+			for i := n; i > 0; i /= 2 {
+				fmt.Println(i)
+				if i%2 != 0 {
+					break
+				}
+				count++
+			}
+			if count > 0 {
+				return count
+			}
+		}
+		return 0
+	}
+	fmt.Println(getCount())
+}
